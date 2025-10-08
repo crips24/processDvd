@@ -62,6 +62,8 @@ int main(){
 	int fnetCount=0;											// index pour mes conneries
 	int speed =1;
 	
+	Atom bordur = XInternAtom(d, "_NET_FRAME_EXTENTS", False);
+
 	Atom actual_type;
 	int actual_format;
 	            unsigned long nitems, bytes_after;
@@ -95,25 +97,30 @@ int main(){
 		int vrax, vray;
 		XWindowAttributes atri;
 
+		long top;
 
 		while(i<fnetCount){
 
 			fnetr = fnet[i];
 			
+
+			XGetWindowProperty(d,fnetr, bordur, 0, 4, False, XA_CARDINAL,&actual_type,&actual_format,&nitems,&bytes_after,&prop);
 			XGetWindowAttributes(d,fnetr,&atri);
 			XTranslateCoordinates(d,fnetr,DefaultRootWindow(d),0, 0,&vrax, &vray,&azerty);
 
-			
+			long top = ((long*)prop)[2];
+			XFree(prop);
+
 			if(vrax+atri.width>=1920 || vrax>=1920 || vrax <= 0) speedFnet[2*i]*=-1;
-			if(vray+atri.height>=1080 || vray>=1080 || vray <= 1) speedFnet[2*i+1]*=-1;				// en cas de bonk on change de traj (*-1 pour inverser gauche/droite/haut/bas)
+			if(vray+atri.height>=1080 || vray>=1080 || vray <= 0) speedFnet[2*i+1]*=-1;				// en cas de bonk on change de traj (*-1 pour inverser gauche/droite/haut/bas)
 
 
 
 			xspeed = speedFnet[2*i];																// pour faire plus joli
 			yspeed = speedFnet[2*i+1];
 
-			printf("%s","y= ");
-			printf("%d",vray);
+			printf("%s","top= ");
+			printf("%d",top);
 			printf("\n");
 
 			XMoveWindow(d,fnetr,vrax+speed*xspeed,vray+speed*yspeed);								// clusterfuck mais en gros j'applique la vitesse aux coordonées avec la bonne traj
