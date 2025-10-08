@@ -16,7 +16,9 @@
 // ne pas sauter d'un pont (difficile)
 // ajouter les args dans la command line / fichier config
 // manpage a faire
-
+// fix les modifiers ( numlock+f12 = pas content)
+// multi screen support
+// multiple resolutions support
 
 
 static inline void limit_60hz_abs(void) { // merde temporaire que chatgpt a écrit pour eviter que mon pc se suicide
@@ -52,7 +54,7 @@ int main(){
 	//setup pour recup les infos (touche/fenetres)
 
 	KeyCode k=XKeysymToKeycode(d,XK_F12); 						// je veut ecouter f12
-	XGrabKey(d,k,0,r,True,GrabModeAsync,GrabModeAsync); 		// sais pas
+	XGrabKey(d,k,AnyModifier,r,True,GrabModeAsync,GrabModeAsync); 		// sais pas
 	
 	Atom net_active;									
 	Window fnet[10];											// pour stocker les fenetres, grand max 10 jusqua que je trouve comment faire mieu
