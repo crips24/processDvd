@@ -1,5 +1,5 @@
-#define _POSIX_C_SOURCE 200809L
-#include <time.h>
+#define _POSIX_C_SOURCE 200809L			// pour que vscode arrete de me casser les couilles
+#include <time.h>					
 
 #include <X11/Xlib.h>
 #include <X11/keysym.h>
