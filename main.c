@@ -105,7 +105,7 @@ int main(){
 
 			
 			if(vrax+atri.width>=1920 || vrax>=1920 || vrax <= 0) speedFnet[2*i]*=-1;
-			if(vray+atri.height>=1080 || vray>=1080 || vray <= 0) speedFnet[2*i+1]*=-1;				// en cas de bonk on change de traj (*-1 pour inverser gauche/droite/haut/bas)
+			if(vray+atri.height>=1080 || vray>=1080 || vray <= 1) speedFnet[2*i+1]*=-1;				// en cas de bonk on change de traj (*-1 pour inverser gauche/droite/haut/bas)
 
 
 
