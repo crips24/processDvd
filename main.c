@@ -123,7 +123,7 @@ int main(){
 		}   
 		XFlush(d);
 		limit_60hz_abs();  
-		XCloseDisplay(d); 																			// allez dodo (quite le programme)
     }
+	XCloseDisplay(d); 																			// allez dodo (quite le programme)
     	
 }
