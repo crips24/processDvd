@@ -112,8 +112,9 @@ int main(){
 			xspeed = speedFnet[2*i];																// pour faire plus joli
 			yspeed = speedFnet[2*i+1];
 
-
-
+			printf("%s","y= ");
+			printf("%d",vray);
+			printf("\n");
 
 			XMoveWindow(d,fnetr,vrax+speed*xspeed,vray+speed*yspeed);								// clusterfuck mais en gros j'applique la vitesse aux coordonées avec la bonne traj
 			
