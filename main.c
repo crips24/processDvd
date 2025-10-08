@@ -112,16 +112,16 @@ int main(){
 			XFree(prop);
 
 			if(vrax+atri.width>=1920 || vrax>=1920 || vrax <= 0) speedFnet[2*i]*=-1;
-			if(vray+atri.height>=1080 || vray>=1080 || vray <= 0) speedFnet[2*i+1]*=-1;				// en cas de bonk on change de traj (*-1 pour inverser gauche/droite/haut/bas)
+			if(vray+atri.height>=1080 || vray>=1080 || vray <= 0+top) speedFnet[2*i+1]*=-1;				// en cas de bonk on change de traj (*-1 pour inverser gauche/droite/haut/bas)
 
 
 
 			xspeed = speedFnet[2*i];																// pour faire plus joli
 			yspeed = speedFnet[2*i+1];
 
-			printf("%s","top= ");
-			printf("%d",top);
-			printf("\n");
+			// printf("%s","top= ");
+			// printf("%d",top);
+			// printf("\n");
 
 			XMoveWindow(d,fnetr,vrax+speed*xspeed,vray+speed*yspeed);								// clusterfuck mais en gros j'applique la vitesse aux coordonées avec la bonne traj
 			
