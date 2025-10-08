@@ -10,10 +10,13 @@
 
 
 // TODO:
-// fix le comportement quand tu spam le f10
+// fix le comportement quand tu spam le f12
 // optimiser la mémoire
 // handle quand on ferme une fenetre
 // ne pas sauter d'un pont (difficile)
+// ajouter les args dans la command line / fichier config
+// manpage a faire
+
 
 
 static inline void limit_60hz_abs(void) { // merde temporaire que chatgpt a écrit pour eviter que mon pc se suicide
