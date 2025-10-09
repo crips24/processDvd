@@ -16,7 +16,6 @@
 // ne pas sauter d'un pont (difficile)
 // ajouter les args dans la command line / fichier config
 // manpage a faire
-// fix les modifiers ( numlock+f12 = pas content)
 // multi screen support
 // multiple resolutions support
 
@@ -97,7 +96,7 @@ int main(){
 		int vrax, vray;
 		XWindowAttributes atri;
 
-		long top;
+		long top=0;
 
 		while(i<fnetCount){
 
@@ -108,7 +107,7 @@ int main(){
 			XGetWindowAttributes(d,fnetr,&atri);
 			XTranslateCoordinates(d,fnetr,DefaultRootWindow(d),0, 0,&vrax, &vray,&azerty);
 
-			long top = ((long*)prop)[2];
+			if (prop !=NULL) top = ((long*)prop)[2];
 			XFree(prop);
 
 			if(vrax+atri.width>=1920 || vrax>=1920 || vrax <= 0) speedFnet[2*i]*=-1;
