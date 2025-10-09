@@ -103,7 +103,7 @@ int main(){
 			fnetr = fnet[i];
 			
 
-			XGetWindowProperty(d,fnetr, bordur, 0, 4, False, XA_CARDINAL,&actual_type,&actual_format,&nitems,&bytes_after,&prop);
+			XGetWindowProperty(d,fnetr, bordur, 0, 4, False, XA_CARDINAL,&actual_type,&actual_format,&nitems,&bytes_after,&prop);		// si jamais le wm a des bordures autour des fenetres
 			XGetWindowAttributes(d,fnetr,&atri);
 			XTranslateCoordinates(d,fnetr,DefaultRootWindow(d),0, 0,&vrax, &vray,&azerty);
 
