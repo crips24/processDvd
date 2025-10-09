@@ -1,5 +1,5 @@
 
-# processDvd : a small project that turns any x11 window into a dvd logo
+# processDvd : a small project that makes any x11 window bounce like a dvd logo
 
 ### KNOWN ISSUES :
 
