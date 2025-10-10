@@ -4,6 +4,7 @@
 ### KNOWN ISSUES :
 
  - crashes when closing dvd-ed window
+ - issue with certain wm with taskbar that snap the window (making it NOT bounce)
  - 10 window limit 
  - overall lack of code quality
  - band aid fix that is the 60hz limit
