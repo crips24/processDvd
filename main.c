@@ -1,5 +1,6 @@
 #define _POSIX_C_SOURCE 200809L			// pour que vscode arrete de me casser les couilles
-#include <time.h>					
+#include <time.h>			
+		
 
 #include <X11/Xlib.h>
 #include <X11/keysym.h>
@@ -60,7 +61,7 @@ int main(){
 	int speedFnet[]={1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};	// fleme de faire une liste en 2D
 	int fnetCount=0;											// index pour mes conneries
 	int speed =1;
-	int fnetGeometry[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
+	
 	
 	Atom bordur = XInternAtom(d, "_NET_FRAME_EXTENTS", False);
 	
@@ -99,17 +100,23 @@ int main(){
 			XFree(prop);
         }}
 		int i=0;
+		int j =0;
 
 
 		int xspeed;																					// bullshit pour faire foncitonner ma merde
 		int yspeed;																					// y sont clairs mes commentaires non ?
 		Window fnetr;
 		Window azerty;
+		Window yuhviu;
 		int vrax, vray;
+		int bonkx,bonky;
 		XWindowAttributes atri;
+		XWindowAttributes bonkAtri;
 
 		long top=0;
 
+			
+		Window bonk;
 		while(i<fnetCount){
 
 			fnetr = fnet[i];
@@ -125,6 +132,27 @@ int main(){
 			if(vrax+atri.width>=width || vrax>=width || vrax <= 0) speedFnet[2*i]*=-1;
 			if(vray+atri.height>=height || vray>=height || vray <= 0+top) speedFnet[2*i+1]*=-1;				// en cas de bonk on change de traj (*-1 pour inverser gauche/droite/haut/bas)
 
+
+			while(j<fnetCount){
+				bonk= fnet[j];
+				if(bonk!=fnetr){
+					XGetWindowAttributes(d,bonk,&bonkAtri);
+					XTranslateCoordinates(d,bonk,DefaultRootWindow(d),0, 0,&bonkx, &bonky,&yuhviu);
+					
+
+					if (bonkx+bonkAtri.width>= vrax && bonkx<=vrax+atri.width&&bonky+bonkAtri.height>= vray && bonky<=vray+atri.height){speedFnet[2*i]*=-1;}
+					if (bonky+bonkAtri.height>= vray && bonky<=vray+atri.height&&bonkx+bonkAtri.width>= vrax && bonkx<=vrax+atri.width){speedFnet[2*i+1]*=-1;}
+
+					// printf("%d",bonkx+bonkAtri.width);
+					// printf("\n");
+					// printf("%d",vrax);
+					// printf("\n");
+					// printf("\n");
+				}
+				j++;
+				
+			}
+			j=0;
 
 
 			xspeed = speedFnet[2*i];																// pour faire plus joli
