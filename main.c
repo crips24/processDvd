@@ -60,6 +60,7 @@ int main(){
 	int speedFnet[]={1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1};	// fleme de faire une liste en 2D
 	int fnetCount=0;											// index pour mes conneries
 	int speed =1;
+	int fnetGeometry[]={0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	
 	Atom bordur = XInternAtom(d, "_NET_FRAME_EXTENTS", False);
 	
