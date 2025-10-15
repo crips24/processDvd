@@ -52,8 +52,8 @@ int main(){
 	
 	//setup pour recup les infos (touche/fenetres)
 
-	KeyCode k=XKeysymToKeycode(d,XK_F12); 						// je veut ecouter f12
-	XGrabKey(d,k,AnyModifier,r,True,GrabModeAsync,GrabModeAsync); 		// sais pas
+	KeyCode k=XKeysymToKeycode(d,XK_F12); 								// je veut ecouter f12
+	XGrabKey(d,k,AnyModifier,r,True,GrabModeAsync,GrabModeAsync); 		// j'écoute f12 et je m'enfout de tout (modifier, )
 	
 	Atom net_active;									
 	Window fnet[10];											// pour stocker les fenetres, grand max 10 jusqua que je trouve comment faire mieu
@@ -62,13 +62,23 @@ int main(){
 	int speed =1;
 	
 	Atom bordur = XInternAtom(d, "_NET_FRAME_EXTENTS", False);
+	
+
 
 	Atom actual_type;
 	int actual_format;
 	            unsigned long nitems, bytes_after;
 	            unsigned char *prop = NULL;						// bullshit inutile pour recuperer les fenetres
 
+	XWindowAttributes atr;
+	XGetWindowAttributes(d,r,&atr);
 
+
+	int height = atr.height;
+	int width = atr.width;
+
+
+	
     while(True){
 		if (fnetCount==10) fnetCount=0;							// oui j'ai ff de mettre des commentaires en plein millieu, me jugez pas :/
         XEvent e;
@@ -77,6 +87,7 @@ int main(){
         if(e.type==KeyPress) {
 			puts("F12!");
 			net_active=XInternAtom(d,"_NET_ACTIVE_WINDOW",False);
+
 			XGetWindowProperty(d,r,net_active,0L,(~0L),False,AnyPropertyType,&actual_type,&actual_format,&nitems,&bytes_after,&prop);			//bullshit qui sert juste a récuperer l'id de la fenetre
 			
 			Window fnetr = (Window)((unsigned long*)prop)[0];
@@ -110,8 +121,8 @@ int main(){
 			if (prop !=NULL) top = ((long*)prop)[2];
 			XFree(prop);
 
-			if(vrax+atri.width>=1920 || vrax>=1920 || vrax <= 0) speedFnet[2*i]*=-1;
-			if(vray+atri.height>=1080 || vray>=1080 || vray <= 0+top) speedFnet[2*i+1]*=-1;				// en cas de bonk on change de traj (*-1 pour inverser gauche/droite/haut/bas)
+			if(vrax+atri.width>=width || vrax>=width || vrax <= 0) speedFnet[2*i]*=-1;
+			if(vray+atri.height>=height || vray>=height || vray <= 0+top) speedFnet[2*i+1]*=-1;				// en cas de bonk on change de traj (*-1 pour inverser gauche/droite/haut/bas)
 
 
 
